@@ -14,14 +14,6 @@ class TrendingTickers:
         bot.get("https://stockbeep.com/trending-stocks")
 
     def getData(self):
-        '''page = self.bot.find_element_by_id("DataTables_Table_0_wrapper")
-        table = page.table
-        value = []
-        for row in table:
-            value.append(row.find_element_by_class_name("column-sscode"))
-        for row in value:
-            row = row.text
-            print(row)'''
         table = self.bot.find_elements_by_class_name("column-sscode")
         for row in table:
             self.ttickers.append(row.text)

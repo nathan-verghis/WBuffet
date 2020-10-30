@@ -6,7 +6,7 @@ Generate market data for 5 different stocks
 """
 
 
-dest = open('./dataGenerator/data1.csv', 'w')
+dest = open('./dataGenerator/rawdata/data1.csv', 'w')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -15,8 +15,8 @@ for row in data:
     writer.writerow(row)
     
 dest.close()
-
-dest = open('./dataGenerator/data2.csv', 'w')
+exit()
+dest = open('./dataGenerator/rawdata/data2.csv', 'w')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -26,7 +26,7 @@ for row in data:
     
 dest.close()
 
-dest = open('./dataGenerator/data3.csv', 'w')
+dest = open('./dataGenerator/rawdata/data3.csv', 'w')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -36,7 +36,7 @@ for row in data:
     
 dest.close()
 
-dest = open('./dataGenerator/data4.csv', 'w')
+dest = open('./dataGenerator/rawdata/data4.csv', 'w')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -46,7 +46,7 @@ for row in data:
     
 dest.close()
 
-dest = open('./dataGenerator/data5.csv', 'w')
+dest = open('./dataGenerator/rawdata/data5.csv', 'w')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
