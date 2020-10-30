@@ -8,7 +8,7 @@ After testing phase (6 - 8 months working on live market data, analysis on decid
 
     1: Fet the daily trending stocks
 
-    2: From 9:30AM - 9:40AM (API limits to 100 calls per day, 10 stocks X 10 X 1 min intervals)
+    2: From 9:30AM - 11:10AM (API limits to 500 calls per day, 5 stocks X 100 X 1 min intervals)
     collect market data and feed into algorithm
 
     3: Make predictions about the closing values of those 10 stocks 1 min into future. Based on these

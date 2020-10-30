@@ -25,7 +25,7 @@ class TrendingTickers:
         table = self.bot.find_elements_by_class_name("column-sscode")
         for row in table:
             self.ttickers.append(row.text)
-        self.ttickers = self.ttickers[1:11]
+        self.ttickers = self.ttickers[1:6]
         for t in self.ttickers:
             print(t) 
 
