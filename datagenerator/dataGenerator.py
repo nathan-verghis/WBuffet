@@ -6,7 +6,7 @@ Generate market data for 5 different stocks
 """
 
 
-dest = open('./dataGenerator/rawdata/data1.csv', 'w')
+dest = open('./dataGenerator/rawdata/data1.csv', 'a')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -15,8 +15,8 @@ for row in data:
     writer.writerow(row)
     
 dest.close()
-exit()
-dest = open('./dataGenerator/rawdata/data2.csv', 'w')
+
+dest = open('./dataGenerator/rawdata/data2.csv', 'a')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -26,7 +26,7 @@ for row in data:
     
 dest.close()
 
-dest = open('./dataGenerator/rawdata/data3.csv', 'w')
+dest = open('./dataGenerator/rawdata/data3.csv', 'a')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -36,7 +36,7 @@ for row in data:
     
 dest.close()
 
-dest = open('./dataGenerator/rawdata/data4.csv', 'w')
+dest = open('./dataGenerator/rawdata/data4.csv', 'a')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
@@ -46,7 +46,7 @@ for row in data:
     
 dest.close()
 
-dest = open('./dataGenerator/rawdata/data5.csv', 'w')
+dest = open('./dataGenerator/rawdata/data5.csv', 'a')
 
 writer = csv.writer(dest)
 ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
