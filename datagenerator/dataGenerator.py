@@ -5,7 +5,19 @@ import csv
 Generate market data for 5 different stocks
 """
 
+userInput = input("Enter a Stock code (e.g. MSFT) to generate data for (q to exit): ")
+while (userInput != "q"):
+    dest = open("./dataGenerator/rawdata/" + userInput + ".csv", 'a')
+    writer = csv.writer(dest)
+    ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
+    data, metadata = ts.get_intraday(symbol=userInput, interval='1min', outputsize='full')
+    for row in data:
+        writer.writerow(row)
+    
+    dest.close()
+    userInput = input("\nEnter a Stock to generate data for (q to exit): ")
 
+exit(1)
 dest = open('./dataGenerator/rawdata/data1.csv', 'a')
 
 writer = csv.writer(dest)
