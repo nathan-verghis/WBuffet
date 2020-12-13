@@ -1,6 +1,8 @@
 from datagenerator.dataGenerator import generate
 from webscraper.TopFive import TrendingTickers
-from datagenerator.dataModifier import *
+from datagenerator.dataModifier import remove_empty_rows
+from datagenerator.dataModifier import removeTimeStamp
+from datagenerator.dataModifier import combine
 from datetime import date
 import os
 

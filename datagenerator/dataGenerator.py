@@ -11,7 +11,7 @@ def generate(names, date):
         dest = open("./datalogs/" + date + "/rawdata/" + name + ".csv", 'a')
         writer = csv.writer(dest)
         ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
-        data, metadata = ts.get_intraday(symbol=name, interval='1min', outputsize='full')
+        data = ts.get_intraday(symbol=name, interval='1min', outputsize='full')[0]
         for row in data:
             writer.writerow(row)
             
@@ -25,7 +25,7 @@ if __name__ == "__main__":
         dest = open("./dataGenerator/rawdata/" + userInput + ".csv", 'a')
         writer = csv.writer(dest)
         ts = TimeSeries(key='OBHHBPMPB779VWRM', output_format='csv')
-        data, metadata = ts.get_intraday(symbol=userInput, interval='1min', outputsize='full')
+        data = ts.get_intraday(symbol=userInput, interval='1min', outputsize='full')[0]
         for row in data:
             writer.writerow(row)
             
