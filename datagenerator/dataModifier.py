@@ -6,10 +6,10 @@ Modify data to place the target prediction in the next column
 """
 
 # remove empty rows
-def remove_empty_rows(filename):
+def remove_empty_rows(filename, date):
     data = []
-    filesrc = './dataGenerator/rawdata/' + filename
-    filedest = './dataGenerator/mod_data/' + filename
+    filesrc = './datalogs/' + date + '/rawdata/' + filename + ".csv"
+    filedest = './datalogs/' + date + '/mod_data/' + filename + ".csv"
 
     # read data into list
     with open(filesrc, 'r') as src:
@@ -24,26 +24,29 @@ def remove_empty_rows(filename):
         writer.writerows(data)
 
 # add data to one dataset
-def combine(filename):
+def combine(filename, date):
     data = []
-    filesrc = './dataGenerator/mod_data/' + filename
-    filedest = './dataGenerator/mod_data/dataFinal.csv'
+    filesrc = './datalogs/' + date + '/mod_data/' + filename + ".csv"
+    filedest = './datalogs/' + date + '/dataFinal.csv'
 
     # read data into list
     with open(filesrc, 'r') as src:
         reader = csv.reader(src)
         for row in reader:
             data.append(row)
+    
+    # remove labels
+    data.remove(data[0])
 
     # copy list into dest
     with open(filedest, 'a') as dest:
         writer = csv.writer(dest, lineterminator = '\n')
         writer.writerows(data)
 
-def removeTimeStamp(filename):
+def removeTimeStamp(filename, date):
     data = []
-    filesrc = './dataGenerator/mod_data/' + filename
-    filedest = './dataGenerator/mod_data/'+ filename
+    filesrc = './datalogs/' + date + '/mod_data/' + filename + ".csv"
+    filedest = './datalogs/' + date + '/mod_data/'+ filename + ".csv"
     
     # read data into list
     with open(filesrc, 'r') as src:
@@ -75,7 +78,12 @@ def removeTimeStamp(filename):
     # edit labels
     data[0] = []
     for i in range(10):
-        data[0].append("open" + str(i + 1) + ",high" + str(i + 1) + ",low" + str(i + 1) + ",close" + str(i + 1) + ",volume" + str(i + 1) + "")
+        data[0].append("open" + str(i + 1))
+        data[0].append("high" + str(i + 1))
+        data[0].append("low" + str(i + 1))
+        data[0].append("close" + str(i + 1))
+        data[0].append("volume" + str(i + 1))
+    data[0].append("target")
 
     # copy list into dest
     with open(filedest, 'w') as dest:
@@ -83,23 +91,27 @@ def removeTimeStamp(filename):
         writer.writerows(data)
 
 
+if __name__ == "__main__":
+    # remove the empty rows from the files
+    remove_empty_rows('data1', 'testing')
+    remove_empty_rows('data2', 'testing')
+    remove_empty_rows('data3', 'testing')
+    remove_empty_rows('data4', 'testing')
+    remove_empty_rows('data5', 'testing')
 
-# remove the empty rows from the files
-remove_empty_rows('data1.csv')
-remove_empty_rows('data2.csv')
-remove_empty_rows('data3.csv')
-remove_empty_rows('data4.csv')
-remove_empty_rows('data5.csv')
+    # further modification
+    removeTimeStamp("data1", 'testing')
+    removeTimeStamp("data2", 'testing')
+    removeTimeStamp("data3", 'testing')
+    removeTimeStamp("data4", 'testing')
+    removeTimeStamp("data5", 'testing')
 
-# combine data into one datafile
-"""combine('data1.csv')
-combine('data2.csv')
-combine('data3.csv')
-combine('data4.csv')
-combine('data5.csv')"""
-
-removeTimeStamp("data1.csv")
-removeTimeStamp("data2.csv")
-removeTimeStamp("data3.csv")
-removeTimeStamp("data4.csv")
-removeTimeStamp("data5.csv")
+    # combine data into one datafile
+    with open("./dataGenerator/mod_data/dataFinal.csv", 'w') as dest:
+        writer = csv.writer(dest, lineterminator = '\n')
+        writer.writerow(["open1,high1,low1,close1,volume1,open2,high2,low2,close2,volume2,open3,high3,low3,close3,volume3,open4,high4,low4,close4,volume4,open5,high5,low5,close5,volume5,open6,high6,low6,close6,volume6,open7,high7,low7,close7,volume7,open8,high8,low8,close8,volume8,open9,high9,low9,close9,volume9,open10,high10,low10,close10,volume10,target"])
+    combine('data1', 'testing')
+    combine('data2', 'testing')
+    combine('data3', 'testing')
+    combine('data4', 'testing')
+    combine('data5', 'testing')
