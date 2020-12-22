@@ -13,3 +13,4 @@ After testing phase (6 - 8 months working on live market data, analysis on decid
 
     3: Make predictions about the closing values of those 10 stocks 1 min into future. Based on these
     predictions buy and sell longs/shorts to profit
+    
