@@ -27,7 +27,7 @@ def remove_empty_rows(filename, date):
 def combine(filename, date):
     data = []
     filesrc = './datalogs/' + date + '/mod_data/' + filename + ".csv"
-    filedest = './datalogs/' + date + '/dataFinal.csv'
+    filedest = './datalogs/' + date + '/dataCombined.csv'
 
     # read data into list
     with open(filesrc, 'r') as src:
@@ -90,6 +90,41 @@ def removeTimeStamp(filename, date):
         writer = csv.writer(dest, lineterminator = '\n')
         writer.writerows(data)
 
+def targetModifier(date, filename):
+    data = []
+    beginnings = []
+    filesrc = './datalogs/' + date + '/' + filename
+    filedest = './datalogs/' + date + '/dataFinal.csv'
+    
+    # read data into list
+    with open(filesrc, 'r') as src:
+        reader = csv.reader(src)
+        for row in reader:
+            data.append(row)
+
+    # get beginnings
+    for row in range(len(data)):
+        if row != 0:
+            beginnings.append(float(data[row][0]))
+        else:
+            beginnings.append(None)
+
+
+    # store goal at the end of each line of data
+    for row in range(len(data)):
+        if row != 0:
+            if float(data[row][-1]) > beginnings[row]:
+                data[row][-1] = '2'
+            if float(data[row][-1]) < beginnings[row]:
+                data[row][-1] = '1'
+            if float(data[row][-1]) == beginnings[row]:
+                data[row][-1] = '0'
+
+    # copy list into dest
+    with open(filedest, 'w') as dest:
+        writer = csv.writer(dest, lineterminator = '\n')
+        writer.writerows(data)
+
 
 if __name__ == "__main__":
     # remove the empty rows from the files
@@ -123,3 +158,6 @@ if __name__ == "__main__":
     combine('data3', 'testing')
     combine('data4', 'testing')
     combine('data5', 'testing')
+
+    # Modify the target to only be 1 of 3 possible values
+    targetModifier("testing", "dataCombined.csv")

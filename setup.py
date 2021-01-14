@@ -3,6 +3,7 @@ from webscraper.TopFive import TrendingTickers
 from datagenerator.dataModifier import remove_empty_rows
 from datagenerator.dataModifier import removeTimeStamp
 from datagenerator.dataModifier import combine
+from datagenerator.dataModifier import targetModifier
 from datetime import date
 import os
 import csv
@@ -54,4 +55,5 @@ for stocks in data:
     remove_empty_rows(stocks, today)
     removeTimeStamp(stocks, today)
     combine(stocks, today)
+    targetModifier(today, stocks)
 print("Successfully Generated Data!")
