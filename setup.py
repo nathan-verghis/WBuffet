@@ -5,6 +5,7 @@ from datagenerator.dataModifier import removeTimeStamp
 from datagenerator.dataModifier import combine
 from datetime import date
 import os
+import csv
 
 today = date.today().strftime("%b-%d-%Y")
 print("Getting today's trenders...")
@@ -15,7 +16,6 @@ print("Got the trenders! Here they are:")
 
 # see the trenders for today
 print(data, today)
-today = "testing"
 
 # create directories
 try:
@@ -31,14 +31,25 @@ print("Generating raw data...")
 generate(data, today)
 
 # only to be used during testing
-userInput = input("Press '1' if data is for testing or '0' if data is for training: ")
+'''userInput = input("Press '1' if data is for testing or '0' if data is for training: ")
 
 if userInput == 1:
     today = "testing"
 elif userInput == 0:
-    today = "training"
+    today = "training"'''
 
 # create files both raw and modified
+with open("./datalogs/" + today + "/dataFinal.csv", 'w') as dest:
+        writer = csv.writer(dest, lineterminator = '\n')
+        info = []
+        for i in range(10):
+            info.append("open" + str(i + 1))
+            info.append("high" + str(i + 1))
+            info.append("low" + str(i + 1))
+            info.append("close" + str(i + 1))
+            info.append("volume" + str(i + 1))
+        info.append("target")
+        writer.writerow(info)
 for stocks in data:
     remove_empty_rows(stocks, today)
     removeTimeStamp(stocks, today)

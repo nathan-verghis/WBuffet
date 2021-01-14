@@ -109,7 +109,15 @@ if __name__ == "__main__":
     # combine data into one datafile
     with open("./dataGenerator/mod_data/dataFinal.csv", 'w') as dest:
         writer = csv.writer(dest, lineterminator = '\n')
-        writer.writerow(["open1,high1,low1,close1,volume1,open2,high2,low2,close2,volume2,open3,high3,low3,close3,volume3,open4,high4,low4,close4,volume4,open5,high5,low5,close5,volume5,open6,high6,low6,close6,volume6,open7,high7,low7,close7,volume7,open8,high8,low8,close8,volume8,open9,high9,low9,close9,volume9,open10,high10,low10,close10,volume10,target"])
+        data = []
+        for i in range(10):
+            data.append("open" + str(i + 1))
+            data.append("high" + str(i + 1))
+            data.append("low" + str(i + 1))
+            data.append("close" + str(i + 1))
+            data.append("volume" + str(i + 1))
+        data.append("target")
+        writer.writerow(data)
     combine('data1', 'testing')
     combine('data2', 'testing')
     combine('data3', 'testing')
