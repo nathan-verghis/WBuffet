@@ -8,52 +8,54 @@ from datetime import date
 import os
 import csv
 
-today = date.today().strftime("%b-%d-%Y")
-print("Getting today's trenders...")
-scanner = TrendingTickers()
-scanner.start()
-data = scanner.getData()
-print("Got the trenders! Here they are:")
+def dailySetup():
 
-# see the trenders for today
-print(data, today)
+    today = date.today().strftime("%b-%d-%Y")
+    print("Getting today's trenders...")
+    scanner = TrendingTickers()
+    scanner.start()
+    data = scanner.getData()
+    print("Got the trenders! Here they are:")
 
-# create directories
-try:
-    os.mkdir("./datalogs/" + today)
-    os.mkdir("./datalogs/" + today + "/rawdata")
-    os.mkdir("./datalogs/" + today + "/mod_data")
-except OSError:
-    print("Unable to make directory")
-    exit(1)
+    # see the trenders for today
+    print(data, today)
 
-# create raw data
-print("Generating raw data...")
-generate(data, today)
+    # create directories
+    try:
+        os.mkdir("./datalogs/" + today)
+        os.mkdir("./datalogs/" + today + "/rawdata")
+        os.mkdir("./datalogs/" + today + "/mod_data")
+    except OSError:
+        print("Unable to make directory")
+        exit(1)
 
-# only to be used during testing
-'''userInput = input("Press '1' if data is for testing or '0' if data is for training: ")
+    # create raw data
+    print("Generating raw data...")
+    generate(data, today)
 
-if userInput == 1:
-    today = "testing"
-elif userInput == 0:
-    today = "training"'''
+    # only to be used during testing
+    '''userInput = input("Press '1' if data is for testing or '0' if data is for training: ")
 
-# create files both raw and modified
-with open("./datalogs/" + today + "/dataFinal.csv", 'w') as dest:
-        writer = csv.writer(dest, lineterminator = '\n')
-        info = []
-        for i in range(10):
-            info.append("open" + str(i + 1))
-            info.append("high" + str(i + 1))
-            info.append("low" + str(i + 1))
-            info.append("close" + str(i + 1))
-            info.append("volume" + str(i + 1))
-        info.append("target")
-        writer.writerow(info)
-for stocks in data:
-    remove_empty_rows(stocks, today)
-    removeTimeStamp(stocks, today)
-    combine(stocks, today)
-    targetModifier(today, stocks)
-print("Successfully Generated Data!")
+    if userInput == 1:
+        today = "testing"
+    elif userInput == 0:
+        today = "training"'''
+
+    # create files both raw and modified
+    with open("./datalogs/" + today + "/dataFinal.csv", 'w') as dest:
+            writer = csv.writer(dest, lineterminator = '\n')
+            info = []
+            for i in range(10):
+                info.append("open" + str(i + 1))
+                info.append("high" + str(i + 1))
+                info.append("low" + str(i + 1))
+                info.append("close" + str(i + 1))
+                info.append("volume" + str(i + 1))
+            info.append("target")
+            writer.writerow(info)
+    for stocks in data:
+        remove_empty_rows(stocks, today)
+        removeTimeStamp(stocks, today)
+        combine(stocks, today)
+        targetModifier(today, stocks)
+    print("Successfully Generated Data!")
