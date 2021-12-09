@@ -59,3 +59,6 @@ def dailySetup():
         combine(stocks, today)
         targetModifier(today, stocks)
     print("Successfully Generated Data!")
+
+if __name__ == "__main__":
+    dailySetup()

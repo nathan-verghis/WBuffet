@@ -93,7 +93,7 @@ def removeTimeStamp(filename, date):
 def targetModifier(date, filename):
     data = []
     beginnings = []
-    filesrc = './datalogs/' + date + '/' + filename
+    filesrc = './datalogs/' + date + '/rawdata/' + filename + '.csv'
     filedest = './datalogs/' + date + '/dataFinal.csv'
     
     # read data into list
