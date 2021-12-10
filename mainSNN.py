@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 from dailySetup import dailySetup
-from train import make_model
+from trainSNN import make_model
 
 
 update = input("If you would like to update the model first, please press 1: ")
