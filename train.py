@@ -13,6 +13,7 @@ def make_model():
     model = tf.keras.models.Sequential()
     model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
     model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
+    model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
     model.add(tf.keras.layers.Dense(3, activation=tf.nn.softmax))
 
     print("Begin training...")
@@ -30,16 +31,16 @@ def make_model():
     return model
 
 
-print("Generating Model...")
-model = make_model()
+    print("Generating Model...")
+    model = make_model()
 
-print("Saving model")
+    print("Saving model")
 
-# Serialize model to JSON
-model_json = model.to_json()
-with open("./model/model.json", "w") as json_file:
-    json_file.write(model_json)
+    # Serialize model to JSON
+    model_json = model.to_json()
+    with open("./model/model.json", "w") as json_file:
+        json_file.write(model_json)
 
-# Serialize weights to HDF5
-model.save_weights("./model/model.h5")
-print("Model successfully saved!")
+    # Serialize weights to HDF5
+    model.save_weights("./model/model.h5")
+    print("Model successfully saved!")
